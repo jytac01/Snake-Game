@@ -1,0 +1,29 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snake Game</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="score">Score: 0</div>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="550" height="550"></canvas>
+    </div>
+
+    <!-- Modal for instructions -->
+    <div id="instructionModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Game Instructions</h2>
+            <p>Use the arrow keys to move the snake:</p>
+            <ul>
+                <li>Left Arrow: Move Left</li>
+                <li>Up Arrow: Move Up</li>
+                <li>Right Arrow: Move Right</li>
+                <li>Down Arrow: Move Down</li>
+            </ul>
+            <p>Press the Space key to pause/resume the game.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
