@@ -16,12 +16,14 @@
         <h1 class="text-4xl text-white mb-4">Snake Game</h1>
         <canvas id="gameCanvas" width="450" height="450" class="bg-gray-900"></canvas>
         <p id="score" class="text-white mt-4">Score: 0</p>
+        <p id="highscore" class="text-white mt-4">High Score: 0</p>
         <p class="text-white mt-4">Use arrow keys to play and space bar to pause/resume</p>
     </div>
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         const scoreDisplay = document.getElementById('score');
+        const highscoreDisplay = document.getElementById('highscore');
 
         const gridSize = 8;
         let snake = [{ x: 200, y: 200 }];
@@ -31,6 +33,10 @@
         let paused = false;
         let gameSpeed = 100;
         let gameInterval;
+
+        // Get the high score from localStorage
+        let highScore = localStorage.getItem('highScore') ? parseInt(localStorage.getItem('highScore')) : 0;
+        highscoreDisplay.textContent = `High Score: ${highScore}`;
 
         function placeFood() {
             food.x = Math.floor(Math.random() * (canvas.width / gridSize)) * gridSize;
@@ -88,6 +94,13 @@
         }
 
         function resetGame() {
+            // Update high score if necessary
+            if (score > highScore) {
+                highScore = score;
+                highscoreDisplay.textContent = `High Score: ${highScore}`;
+                localStorage.setItem('highScore', highScore);  // Save high score to localStorage
+            }
+
             snake = [{ x: 200, y: 200 }];
             direction = { x: 0, y: 0 };
             score = 0;
